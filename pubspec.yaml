@@ -1,0 +1,34 @@
+name: celebration_effect
+description: >-
+  Lightweight celebration effects (confetti and crackers) with a reusable controller.
+version: 1.0.0
+homepage: https://github.com/yourname/celebration_effect
+repository: https://github.com/yourname/celebration_effect
+issue_tracker: https://github.com/yourname/celebration_effect/issues
+
+environment:
+  sdk: ^3.8.1
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+topics:
+  - animation
+  - confetti
+  - celebration
+  - flutter
+
+platforms:
+  android:
+  ios:
+  web:
+  windows:
+  macos:
+  linux:
