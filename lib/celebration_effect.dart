@@ -34,4 +34,6 @@ export 'src/confetti_effect.dart';
 export 'src/cracker_effect.dart';
 export 'src/firework_effect.dart';
 export 'src/particle_shape.dart';
+export 'src/ripple_effect.dart';
 export 'src/spotlight_effect.dart';
+export 'src/starburst_effect.dart';

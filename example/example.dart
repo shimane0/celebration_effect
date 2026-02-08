@@ -48,10 +48,10 @@ class _DemoPageState extends State<DemoPage> {
     switch (_selectedPreset) {
       case _PresetType.spotlight:
         return CelebrationPreset.spotlight(controller: _controller);
-      case _PresetType.achievement:
-        return CelebrationPreset.achievement(controller: _controller);
-      case _PresetType.gentle:
-        return CelebrationPreset.gentle(controller: _controller);
+      case _PresetType.starburst:
+        return CelebrationPreset.starburst(controller: _controller);
+      case _PresetType.ripple:
+        return CelebrationPreset.ripple(controller: _controller);
       case _PresetType.firework:
         return CelebrationPreset.firework(controller: _controller);
       case _PresetType.sakura:
@@ -156,8 +156,8 @@ class _DemoPageState extends State<DemoPage> {
 
 enum _PresetType {
   spotlight('Spotlight'),
-  achievement('Achievement'),
-  gentle('Gentle'),
+  starburst('Starburst'),
+  ripple('Ripple'),
   firework('Fireworks'),
   sakura('Sakura'),
   custom('Custom');

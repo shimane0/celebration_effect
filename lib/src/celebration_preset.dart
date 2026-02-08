@@ -4,7 +4,9 @@ import 'celebration_controller.dart';
 import 'confetti_effect.dart';
 import 'firework_effect.dart';
 import 'particle_shape.dart';
+import 'ripple_effect.dart';
 import 'spotlight_effect.dart';
+import 'starburst_effect.dart';
 
 /// 定義済みの祝福演出プリセット
 ///
@@ -23,9 +25,9 @@ import 'spotlight_effect.dart';
 ///
 /// | プリセット | 説明 |
 /// |---|---|
-/// | [spotlight] | 画面上部から光のビームが降り注ぐステージ照明風 |
-/// | [achievement] | ゴールド＆シルバー系の上品な紙吹雪 |
-/// | [gentle] | 少量の小さな紙吹雪が静かに舞い降りる控えめな演出 |
+/// | [spotlight] | 画面下部から光のビームが上方へ照射されるステージ照明風 |
+/// | [starburst] | 中央から光芒が回転拡大するスターバースト（星彩） |
+/// | [ripple] | 中央から同心円の波紋が広がるリップル演出 |
 /// | [firework] | 複数シェルが時間差で爆発する本格的な花火 |
 /// | [sakura] | ピンク系の淡い色合いでゆったりと舞い落ちる桜吹雪風 |
 final class CelebrationPreset {
@@ -41,44 +43,21 @@ final class CelebrationPreset {
     return [SpotlightEffect(controller: controller)];
   }
 
-  /// 達成・アチーブメント向け演出
+  /// スターバースト（星彩）演出
   ///
-  /// ゴールド＆シルバー系の上品な紙吹雪。
-  /// ミッション達成・レベルアップなどの報酬演出に適しています。
-  static List<Widget> achievement({required CelebrationController controller}) {
-    return [
-      ConfettiEffect(
-        controller: controller,
-        colors: const [
-          Color(0xFFFFD700), // ゴールド
-          Color(0xFFFFC107), // アンバー
-          Color(0xFFC0C0C0), // シルバー
-          Color(0xFFE0E0E0), // ライトシルバー
-          Color(0xFFFFE082), // ライトゴールド
-        ],
-        shapes: const [ParticleShape.star, ParticleShape.rectangle, ParticleShape.circle],
-        gravity: 0.12,
-        densityScale: 0.8,
-      ),
-    ];
+  /// 画面中央から黄金色の光芒が放射状に回転しながら広がり、
+  /// 星形のスパークルが螺旋軌道を描いて外側へ飛び出す演出。
+  /// レア獲得・レベルアップなどの報酬演出に最適です。
+  static List<Widget> starburst({required CelebrationController controller}) {
+    return [StarburstEffect(controller: controller)];
   }
 
-  /// 控えめ・さりげない演出
+  /// リップル（波紋）演出
   ///
-  /// 少量の小さな紙吹雪が静かに舞い降りる演出。
-  /// 日常的な小さな成功やタスク完了の通知に適しています。
-  static List<Widget> gentle({required CelebrationController controller}) {
-    return [
-      ConfettiEffect(
-        controller: controller,
-        numberOfParticles: 40,
-        gravity: 0.08,
-        particleDrag: 0.07,
-        minParticleSize: 4,
-        maxParticleSize: 10,
-        shapes: const [ParticleShape.circle, ParticleShape.rectangle],
-      ),
-    ];
+  /// 画面中央から光の輪が同心円状に時間差で次々と広がる演出。
+  /// 幻想的で静謐な質感で、日常の小さな成功やタスク完了に。
+  static List<Widget> ripple({required CelebrationController controller}) {
+    return [RippleEffect(controller: controller)];
   }
 
   /// 花火演出
