@@ -100,6 +100,12 @@ class CelebrationPainter extends CustomPainter {
           ..lineTo(0, sh)
           ..lineTo(-sw * 0.2, sh * 0.5)
           ..close();
+
+      case ParticleShape.sakuraPetal:
+        return _buildSakuraPetalPath(width: w, height: h);
+
+      case ParticleShape.beam:
+        return _buildBeamPath(width: w, height: h);
     }
   }
 
@@ -123,6 +129,54 @@ class CelebrationPainter extends CustomPainter {
     }
     path.close();
     return path;
+  }
+
+  /// 桜の花びらのパスを生成
+  ///
+  /// 先端が尖り付け根がくびれた、自然な花弁のシルエット。
+  /// 2つの二次ベジェ曲線で左右対称に描画する。
+  Path _buildSakuraPetalPath({required double width, required double height}) {
+    // 花びらの縦横比を自然な形に調整
+    final pw = width * 1.1;
+    final ph = height * 1.6;
+    final halfW = pw / 2;
+
+    return Path()
+      // 先端（上）から右側の曲線
+      ..moveTo(0, -ph / 2)
+      ..quadraticBezierTo(halfW * 1.4, -ph * 0.15, halfW * 0.7, ph * 0.2)
+      // 右側から付け根（下）へ — くびれを作る
+      ..quadraticBezierTo(halfW * 0.15, ph * 0.35, 0, ph / 2)
+      // 付け根から左側の曲線
+      ..quadraticBezierTo(-halfW * 0.15, ph * 0.35, -halfW * 0.7, ph * 0.2)
+      // 左側から先端へ戻る
+      ..quadraticBezierTo(-halfW * 1.4, -ph * 0.15, 0, -ph / 2)
+      ..close();
+  }
+
+  /// 光線ビームのパスを生成
+  ///
+  /// 両端が尖る細長いダイヤモンド形。
+  /// スポットライトの光の筋を再現する。
+  Path _buildBeamPath({required double width, required double height}) {
+    // 縦長のダイヤモンド形（幅:1 高さ:4のアスペクト比）
+    final bw = width * 0.35;
+    final bh = height * 2.0;
+    final halfW = bw / 2;
+    final halfH = bh / 2;
+
+    return Path()
+      // 上端（尖る）
+      ..moveTo(0, -halfH)
+      // 右側への曲線
+      ..quadraticBezierTo(halfW, -halfH * 0.3, halfW, 0)
+      // 下端（尖る）
+      ..quadraticBezierTo(halfW, halfH * 0.3, 0, halfH)
+      // 左側への曲線
+      ..quadraticBezierTo(-halfW, halfH * 0.3, -halfW, 0)
+      // 上端へ戻る
+      ..quadraticBezierTo(-halfW, -halfH * 0.3, 0, -halfH)
+      ..close();
   }
 
   @override

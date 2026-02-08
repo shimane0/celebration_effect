@@ -1,11 +1,10 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import 'celebration_controller.dart';
 import 'confetti_effect.dart';
-import 'cracker_effect.dart';
+import 'firework_effect.dart';
 import 'particle_shape.dart';
+import 'spotlight_effect.dart';
 
 /// 定義済みの祝福演出プリセット
 ///
@@ -16,7 +15,7 @@ import 'particle_shape.dart';
 /// ```dart
 /// CelebrationOverlay(
 ///   child: MyContent(),
-///   effects: CelebrationPreset.birthday(controller: controller),
+///   effects: CelebrationPreset.spotlight(controller: controller),
 /// )
 /// ```
 ///
@@ -24,41 +23,22 @@ import 'particle_shape.dart';
 ///
 /// | プリセット | 説明 |
 /// |---|---|
-/// | [birthday] | カラフルな紙吹雪＋左右クラッカーの華やかな構成 |
+/// | [spotlight] | 画面上部から光のビームが降り注ぐステージ照明風 |
 /// | [achievement] | ゴールド＆シルバー系の上品な紙吹雪 |
 /// | [gentle] | 少量の小さな紙吹雪が静かに舞い降りる控えめな演出 |
-/// | [intense] | 大量パーティクル＋左右クラッカーの全部盛り |
+/// | [firework] | 複数シェルが時間差で爆発する本格的な花火 |
 /// | [sakura] | ピンク系の淡い色合いでゆったりと舞い落ちる桜吹雪風 |
 final class CelebrationPreset {
   CelebrationPreset._();
 
-  /// 誕生日・お祝い向け演出
+  /// スポットライト演出
   ///
-  /// カラフルな紙吹雪と左右のクラッカーの華やかな構成。
-  /// パーティー・記念日など華やかなシーンに最適です。
-  static List<Widget> birthday({required CelebrationController controller}) {
-    return [
-      ConfettiEffect(
-        controller: controller,
-        shapes: const [ParticleShape.rectangle, ParticleShape.circle, ParticleShape.star],
-      ),
-      CrackerEffect(
-        controller: controller,
-        blastDirection: -math.pi / 3,
-        originAlignment: const Alignment(-0.95, 0.85),
-        maxBlastForce: 35,
-        minBlastForce: 18,
-        shapes: const [ParticleShape.rectangle, ParticleShape.star],
-      ),
-      CrackerEffect(
-        controller: controller,
-        blastDirection: -2 * math.pi / 3,
-        originAlignment: const Alignment(0.95, 0.85),
-        maxBlastForce: 35,
-        minBlastForce: 18,
-        shapes: const [ParticleShape.rectangle, ParticleShape.star],
-      ),
-    ];
+  /// 画面上部から複数の光のビームが降り注ぐステージ照明風演出。
+  /// グラデーション描画による滑らかなビームが左右にスイープし、
+  /// 脈動しながらフェードインアウトします。
+  /// ライブ・表彰・発表会など華やかなシーンに最適です。
+  static List<Widget> spotlight({required CelebrationController controller}) {
+    return [SpotlightEffect(controller: controller)];
   }
 
   /// 達成・アチーブメント向け演出
@@ -101,43 +81,14 @@ final class CelebrationPreset {
     ];
   }
 
-  /// 激しい・派手な演出
+  /// 花火演出
   ///
-  /// 大量のパーティクル＋左右クラッカー＋風の全部盛り。
+  /// 画面上部の複数地点から時間差で花火が打ち上がり、
+  /// 球状に爆発するパーティクルが重力で弧を描いて落下します。
+  /// 爆発時のフラッシュ・光の尾・色彩豊かなシェルで本格的な花火を再現。
   /// 大きな節目やクライマックスの演出に。
-  static List<Widget> intense({required CelebrationController controller}) {
-    return [
-      ConfettiEffect(
-        controller: controller,
-        densityScale: 2,
-        shapes: const [
-          ParticleShape.rectangle,
-          ParticleShape.circle,
-          ParticleShape.triangle,
-          ParticleShape.star,
-          ParticleShape.streamer,
-        ],
-        windForce: 0.015,
-      ),
-      CrackerEffect(
-        controller: controller,
-        blastDirection: -math.pi / 3,
-        originAlignment: const Alignment(-0.95, 0.85),
-        maxBlastForce: 40,
-        minBlastForce: 22,
-        densityScale: 1.5,
-        shapes: const [ParticleShape.rectangle, ParticleShape.star, ParticleShape.streamer],
-      ),
-      CrackerEffect(
-        controller: controller,
-        blastDirection: -2 * math.pi / 3,
-        originAlignment: const Alignment(0.95, 0.85),
-        maxBlastForce: 40,
-        minBlastForce: 22,
-        densityScale: 1.5,
-        shapes: const [ParticleShape.rectangle, ParticleShape.star, ParticleShape.streamer],
-      ),
-    ];
+  static List<Widget> firework({required CelebrationController controller}) {
+    return [FireworkEffect(controller: controller)];
   }
 
   /// 桜吹雪風演出
@@ -157,7 +108,7 @@ final class CelebrationPreset {
         ],
         gravity: 0.06,
         particleDrag: 0.06,
-        shapes: const [ParticleShape.circle, ParticleShape.streamer],
+        shapes: const [ParticleShape.sakuraPetal],
         windForce: 0.025,
         densityScale: 0.7,
         fadeOutBegin: 0.8,

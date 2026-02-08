@@ -30,7 +30,7 @@ class DemoPage extends StatefulWidget {
 
 class _DemoPageState extends State<DemoPage> {
   late final CelebrationController _controller;
-  _PresetType _selectedPreset = _PresetType.birthday;
+  _PresetType _selectedPreset = _PresetType.spotlight;
 
   @override
   void initState() {
@@ -46,14 +46,14 @@ class _DemoPageState extends State<DemoPage> {
 
   List<Widget> _buildEffects() {
     switch (_selectedPreset) {
-      case _PresetType.birthday:
-        return CelebrationPreset.birthday(controller: _controller);
+      case _PresetType.spotlight:
+        return CelebrationPreset.spotlight(controller: _controller);
       case _PresetType.achievement:
         return CelebrationPreset.achievement(controller: _controller);
       case _PresetType.gentle:
         return CelebrationPreset.gentle(controller: _controller);
-      case _PresetType.intense:
-        return CelebrationPreset.intense(controller: _controller);
+      case _PresetType.firework:
+        return CelebrationPreset.firework(controller: _controller);
       case _PresetType.sakura:
         return CelebrationPreset.sakura(controller: _controller);
       case _PresetType.custom:
@@ -155,10 +155,10 @@ class _DemoPageState extends State<DemoPage> {
 }
 
 enum _PresetType {
-  birthday('Birthday'),
+  spotlight('Spotlight'),
   achievement('Achievement'),
   gentle('Gentle'),
-  intense('Intense'),
+  firework('Fireworks'),
   sakura('Sakura'),
   custom('Custom');
 

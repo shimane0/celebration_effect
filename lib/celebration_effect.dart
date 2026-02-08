@@ -32,4 +32,6 @@ export 'src/celebration_overlay.dart';
 export 'src/celebration_preset.dart';
 export 'src/confetti_effect.dart';
 export 'src/cracker_effect.dart';
+export 'src/firework_effect.dart';
 export 'src/particle_shape.dart';
+export 'src/spotlight_effect.dart';

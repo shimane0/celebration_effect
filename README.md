@@ -7,9 +7,11 @@
 
 - **紙吹雪** — 画面上部から降り注ぐカラフルなパーティクル
 - **クラッカー** — 指定位置から放射状に発射されるパーティクル
-- **5種類のパーティクル形状** — 矩形・円・三角・星・リボン
+- **スポットライト** — グラデーション描画によるステージ照明風の光のビーム
+- **花火** — 複数シェルが時間差で爆発する本格的な花火演出
+- **7種類のパーティクル形状** — 矩形・円・三角・星・リボン・桜・ビーム
 - **自動スケーリング** — 画面サイズに応じてパーティクル数/サイズ/運動量を自動調整
-- **プリセット** — `birthday` / `achievement` / `gentle` / `intense` / `sakura` ですぐに使える
+- **プリセット** — `spotlight` / `achievement` / `gentle` / `firework` / `sakura` ですぐに使える
 - **コントローラー** — 再生/停止/トグル/リピート/完了コールバックを統一管理
 - **風エフェクト** — 横方向のドリフトで自然な動きを実現
 - **フェードアウト制御** — 開始タイミングをカスタマイズ可能
@@ -59,7 +61,7 @@ controller.dispose();
 ```dart
 CelebrationOverlay(
   child: MyContent(),
-  effects: CelebrationPreset.birthday(controller: controller),
+  effects: CelebrationPreset.spotlight(controller: controller),
 );
 
 controller.play();
@@ -69,10 +71,10 @@ controller.play();
 
 | プリセット | 説明 |
 |---|---|
-| `CelebrationPreset.birthday` | カラフルな紙吹雪＋左右クラッカー。パーティー・記念日に |
+| `CelebrationPreset.spotlight` | 画面上部から光のビームが降り注ぐステージ照明風 |
 | `CelebrationPreset.achievement` | ゴールド＆シルバーの上品な紙吹雪。達成・報酬演出に |
 | `CelebrationPreset.gentle` | 少量の小さな紙吹雪。タスク完了など控えめな通知に |
-| `CelebrationPreset.intense` | 全種パーティクル＋左右クラッカー＋風。クライマックスに |
+| `CelebrationPreset.firework` | 複数シェルが時間差で爆発する花火。クライマックスに |
 | `CelebrationPreset.sakura` | ピンク系でゆったり舞い落ちる桜吹雪風。和風テーマに |
 
 ---
