@@ -1,7 +1,9 @@
 name: celebration_effect
 description: >-
-  Lightweight celebration effects (confetti and crackers) with a reusable controller.
-version: 1.0.0
+  軽量な祝福演出ライブラリ。紙吹雪やクラッカーなどのパーティクル演出を
+  任意のウィジェットにオーバーレイ。5種類の形状・プリセット・風エフェクト・
+  自動スケーリング対応。追加パッケージ不要。
+version: 2.0.0
 homepage: https://github.com/yourname/celebration_effect
 repository: https://github.com/yourname/celebration_effect
 issue_tracker: https://github.com/yourname/celebration_effect/issues
